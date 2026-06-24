@@ -5,10 +5,8 @@ node('DOTNETCORE'){
 	}
     stage('Build') {
         echo 'Building....'
-		withDotNet(sdk: "sdk10"){
-			sh 'dotnet --version'
-			sh 'dotnet build ConsolApp1'
-		}
+		sh 'dotnet --version'
+		sh 'dotnet build ConsoleApp1'
     }
     stage('Test') {
         echo 'Testing....'
