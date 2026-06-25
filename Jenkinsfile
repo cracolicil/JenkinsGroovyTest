@@ -4,9 +4,18 @@ node('DOTNETCORE'){
 		git branch: '${branch}', url: 'https://github.com/cracolicil/JenkinsGroovyTest.git'
 	}
     stage('Build') {
-        echo 'Building....'
-		sh 'dotnet --version'
-		sh 'dotnet build ConsoleApp1'
+        try{
+            echo 'Building....'
+            sh 'dotnet --version'
+            sh 'dotnet build ConsoleApp1'
+        }catch(ex){
+            echo 'Something went wrong'
+            echo ex.toString()
+            currentBuild.result = 'FAILURE'
+        }
+        finally{
+            // cleanup
+        }
     }
     stage('Test') {
         echo 'Testing....'
