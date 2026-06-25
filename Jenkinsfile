@@ -6,7 +6,6 @@ node('DOTNETCORE'){
     stage('Build') {
         try{
             echo 'Building....'
-            sh 'dotnet --version'
             sh 'dotnet build ConsoleApp1'
             releasenotes();
         }catch(ex){
